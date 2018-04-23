@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { TimerComponent } from './timer/timer.component';
-import { ImageComponent } from './image/image.component';
+import { TimerComponent } from './components/timer/timer.component';
+import { ImageComponent } from './components/image/image.component';
 
 
 @NgModule({
