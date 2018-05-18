@@ -1,20 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'timer',
-  templateUrl: './timer.component.html',
-  styleUrls: ['./timer.component.css']
+  selector: 'app-arcade-mode',
+  templateUrl: './arcade-mode.component.html',
+  styleUrls: ['./arcade-mode.component.css']
 })
-export class TimerComponent implements OnInit {
-
-
+export class ArcadeModeComponent implements OnInit {
   private segundos: number;
   private isPaused: boolean;
+  imageEnlarge: boolean = false;
 
   constructor() {
     this.segundos = 60;
     this.isPaused = false;
     setInterval(() => this.tick(), 1000);
+  }
+
+  ngOnInit() {
   }
 
   private tick(): void {
@@ -29,7 +31,12 @@ export class TimerComponent implements OnInit {
     this.isPaused = !this.isPaused;
   }
 
-  ngOnInit() {
+  imageSizeToggle() {
+    if(this.imageEnlarge){
+      this.imageEnlarge = false;
+    } else {
+      this.imageEnlarge = true;
+    }
   }
 
 }

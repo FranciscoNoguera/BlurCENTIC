@@ -1,22 +1,32 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
 import { AppComponent } from './app.component';
-import { TimerComponent } from './components/timer/timer.component';
-import { ImageComponent } from './components/image/image.component';
+import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
 
+/*Servicios*/
+import { ApiConnectionService } from './services/ApiConnection/api-connection.service';
+
+/*Componentes*/import { ArcadeModeComponent } from './components/arcade-mode/arcade-mode.component';
+import { InitPageComponent } from './components/init-page/init-page.component';
+
+/*Rutas*/
+import { ROUTES } from './app.routing'
 
 @NgModule({
   declarations: [
     AppComponent,
-    TimerComponent,
-    ImageComponent
+    ArcadeModeComponent,
+    InitPageComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpModule,
+    RouterModule.forRoot(ROUTES)
   ],
-  providers: [],
+  providers: [
+    ApiConnectionService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
