@@ -6,12 +6,13 @@ import { RouterModule } from '@angular/router';
 
 /*Servicios*/
 import { ApiConnectionService } from './services/ApiConnection/api-connection.service';
+import { GamePlayService } from './services/GamePlay/game-play.service';
 
 /*Componentes*/import { ArcadeModeComponent } from './components/arcade-mode/arcade-mode.component';
 import { InitPageComponent } from './components/init-page/init-page.component';
 
 /*Rutas*/
-import { ROUTES } from './app.routing'
+import { ROUTES } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ROUTES } from './app.routing'
     RouterModule.forRoot(ROUTES)
   ],
   providers: [
-    ApiConnectionService
+    ApiConnectionService,
+    GamePlayService
   ],
   bootstrap: [AppComponent]
 })
