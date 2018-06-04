@@ -11,6 +11,7 @@ import { GamePlayService } from './services/GamePlay/game-play.service';
 /*Componentes*/
 import { ArcadeModeComponent } from './components/arcade-mode/arcade-mode.component';
 import { InitPageComponent } from './components/init-page/init-page.component';
+import { GameModeComponent } from './components/game-mode/game-mode.component';
 
 /*Rutas*/
 import { ROUTES } from './app.routing';
@@ -19,7 +20,8 @@ import { ROUTES } from './app.routing';
   declarations: [
     AppComponent,
     ArcadeModeComponent,
-    InitPageComponent
+    InitPageComponent,
+    GameModeComponent
   ],
   imports: [
     BrowserModule,

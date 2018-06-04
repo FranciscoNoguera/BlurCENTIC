@@ -5,6 +5,7 @@ export interface Card {
      * @author Francisco Noguera Fuentes
      * @version 1.0
      */
+    _id: string; //Id que el Api asigna a la tarjeta.
     time: number; //Este parámetro contiene el tiempo máximo para resolver la tarjeta.
     clue: string; //Contiene la pista de la tarjeta.
     solution: string; //Contiene la solución de la tarjeta.

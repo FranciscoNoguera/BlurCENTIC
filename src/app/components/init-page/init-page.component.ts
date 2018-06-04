@@ -14,7 +14,7 @@ export class InitPageComponent implements OnInit {
   }
 
   reditectToArcade(){
-    this.router.navigateByUrl('arcade');
+    this.router.navigateByUrl('init');
   }
 
 }

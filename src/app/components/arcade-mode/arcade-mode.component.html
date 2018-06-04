@@ -8,11 +8,30 @@
     <div class="row">
         <div class="col-md-2 col-sm-1"></div>
         <div class="col-md-8 col-sm-10">
-            <img src="../../../assets/PlaceholderImg.png" (click)="imageSizeToggle()">
+            <img src={{gameImage}} (click)="imageSizeToggle()">
         </div>
         <div class="col-md-2 col-sm-1"></div>
     </div>
 </div>
 <div  *ngIf="imageEnlarge == true">
-    <img src="../../../assets/PlaceholderImg.png" (click)="imageSizeToggle()">
+    <img src={{gameImage}} (click)="imageSizeToggle()">
+</div>
+<div>
+    <div *ngIf="displayClue == true">
+        <p>{{gameClue}}</p>
+    </div>
+    <button type="button" (click)="showClue()">Pista</button>
+</div>
+<!--Teclado-->
+<div>
+    <div>
+        <td *ngFor="let letter of arraySolution; let i = index">
+            <tr><button type="button" (click)="exchangeLetter('solution', i)" >{{letter}}</button></tr>
+        </td>
+    </div>
+    <div>
+        <td *ngFor="let letter of arrayKeyboard; let j = index">
+            <tr><button type="button" (click)="exchangeLetter('keyboard', j)" >{{letter}}</button></tr>
+        </td>
+    </div>
 </div>
