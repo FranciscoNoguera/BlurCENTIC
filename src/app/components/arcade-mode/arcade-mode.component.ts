@@ -1,3 +1,4 @@
+import { ApiConnectionService } from './../../services/ApiConnection/api-connection.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,13 +11,15 @@ export class ArcadeModeComponent implements OnInit {
   private isPaused: boolean;
   imageEnlarge: boolean = false;
 
-  constructor() {
+  constructor(private apiConnectionService: ApiConnectionService) {
     this.segundos = 60;
     this.isPaused = false;
     setInterval(() => this.tick(), 1000);
   }
 
   ngOnInit() {
+    this.apiConnectionService.getCredentials();
+    this.apiConnectionService.getCards();
   }
 
   private tick(): void {

@@ -8,7 +8,8 @@ import { RouterModule } from '@angular/router';
 import { ApiConnectionService } from './services/ApiConnection/api-connection.service';
 import { GamePlayService } from './services/GamePlay/game-play.service';
 
-/*Componentes*/import { ArcadeModeComponent } from './components/arcade-mode/arcade-mode.component';
+/*Componentes*/
+import { ArcadeModeComponent } from './components/arcade-mode/arcade-mode.component';
 import { InitPageComponent } from './components/init-page/init-page.component';
 
 /*Rutas*/
