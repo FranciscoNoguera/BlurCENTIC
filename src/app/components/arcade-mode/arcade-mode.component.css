@@ -5,3 +5,26 @@ h1 {
     font-family: 'Orbitron';
     text-align: center;
 }
+.spacer {
+    padding-bottom: 10px;
+}
+.jump-arrow {
+    float: right;
+    font-size: 30px;
+    background-color: transparent;
+    border: none;
+}
+
+.clue-button {
+    width: 50px;
+    height: 50px;
+}
+
+.clue-text {
+    font-family: 'Orbitron';
+    font-size: 20px;
+}
+
+.keyboard{
+
+}

@@ -4,19 +4,25 @@
   {{segundos | number: '2.0'}}
 </h1>
 <!--Botón siguiente-->
-<div>
-    <button (click)="jumpCard()">Siguiente</button>
+<div class="row spacer">
+    <div class="col-lg-4 col-md-3 col-xs-2"></div>
+    <div class="col-lg-4 col-md-6 col-xs-8">
+        <button class="jump-arrow" (click)="jumpCard()">
+            <span class="glyphicon glyphicon-arrow-right"></span>
+        </button>
+    </div>
+    <div class="col-lg-4 col-md-3 col-xs-2"></div>
 </div>
 <!--Image-->
-<div [ngSwitch]="blurLevel" >
+<div [ngSwitch]="blurLevel" class="spacer">
     <div *ngSwitchCase="0" >
         <div style="filter: blur(40px);" class="container" *ngIf="imageEnlarge == false">
             <div class="row">
-                <div class="col-md-2 col-sm-1"></div>
-                <div class="col-md-8 col-sm-10">
+                <div class="col-lg-4 col-md-3 col-xs-2"></div>
+                <div class="col-lg-4 col-md-6 col-xs-8">
                     <img src={{gameImage}} (click)="imageSizeToggle()">
                 </div>
-                <div class="col-md-2 col-sm-1"></div>
+                <div class="col-lg-4 col-md-3 col-xs-2"></div>
             </div>
         </div>
         <div  *ngIf="imageEnlarge == true">
@@ -26,11 +32,11 @@
     <div *ngSwitchCase="1" >
         <div style="filter: blur(30px);" class="container" *ngIf="imageEnlarge == false">
             <div class="row">
-                <div class="col-md-2 col-sm-1"></div>
-                <div class="col-md-8 col-sm-10">
+                <div class="col-md-4 col-md-3 col-xs-2"></div>
+                <div class="col-md-4 col-md-6 col-xs-8">
                     <img src={{gameImage}} (click)="imageSizeToggle()">
                 </div>
-                <div class="col-md-2 col-sm-1"></div>
+                <div class="col-md-4 col-md-3 col-xs-2"></div>
             </div>
         </div>
         <div  *ngIf="imageEnlarge == true">
@@ -40,11 +46,11 @@
     <div *ngSwitchCase="2" >
         <div style="filter: blur(20px);" class="container" *ngIf="imageEnlarge == false">
             <div class="row">
-                <div class="col-md-2 col-sm-1"></div>
-                <div class="col-md-8 col-sm-10">
+                <div class="col-md-4 col-md-3 col-xs-2"></div>
+                <div class="col-md-4 col-md-6 col-xs-8">
                     <img src={{gameImage}} (click)="imageSizeToggle()">
                 </div>
-                <div class="col-md-2 col-sm-1"></div>
+                <div class="col-md-4 col-md-3 col-xs-2"></div>
             </div>
         </div>
         <div  *ngIf="imageEnlarge == true">
@@ -54,11 +60,11 @@
     <div *ngSwitchCase="3" >
         <div style="filter: blur(10px);" class="container" *ngIf="imageEnlarge == false">
             <div class="row">
-                <div class="col-md-2 col-sm-1"></div>
-                <div class="col-md-8 col-sm-10">
+                <div class="col-md-4 col-md-3 col-xs-2"></div>
+                <div class="col-md-4 col-md-6 col-xs-8">
                     <img src={{gameImage}} (click)="imageSizeToggle()">
                 </div>
-                <div class="col-md-2 col-sm-1"></div>
+                <div class="col-md-4 col-md-3 col-xs-2"></div>
             </div>
         </div>
         <div  *ngIf="imageEnlarge == true">
@@ -68,11 +74,11 @@
     <div *ngSwitchCase="4" >
         <div class="container" *ngIf="imageEnlarge == false">
             <div class="row">
-                <div class="col-md-2 col-sm-1"></div>
-                <div class="col-md-8 col-sm-10">
+                <div class="col-md-4 col-md-3 col-xs-2"></div>
+                <div class="col-md-4 col-md-6 col-xs-8">
                     <img src={{gameImage}} (click)="imageSizeToggle()">
                 </div>
-                <div class="col-md-2 col-sm-1"></div>
+                <div class="col-md-4 col-md-3 col-xs-2"></div>
             </div>
         </div>
         <div  *ngIf="imageEnlarge == true">
@@ -81,18 +87,35 @@
     </div>
 </div>
 
-
-
 <!--Pista-->
-<div>
-    <div *ngIf="displayClue == true">
-        <p>{{gameClue}}</p>
+
+
+<div class="row">
+    <div class="col-lg-4 col-md-3 col-xs-2"></div>
+    <div class="col-lg-4 col-md-6 col-xs-8">
+        <div class="row">
+            <div class="col-xs-9">
+                <div *ngIf="displayClue == true">
+                        <p class="clue-text">{{gameClue}}</p>
+                </div>
+            </div>
+            <div class="col-xs-3">
+                <img class="clue-button" src="../../../assets/clue.png" alt="" (click)="showClue()">
+            </div>
+        </div>
     </div>
-    <button type="button" (click)="showClue()">Pista</button>
+    <div class="col-lg-4 col-md-3 col-xs-2"></div>
 </div>
+
 <!--Teclado-->
+<div *ngFor ="let letter of arraySolution; let i = index" class="row">
+    <div class="col-sm-2">
+        <!--<button class="btn"> {{letter}} </button>-->
+    </div>
+</div>
+
 <div>
-    <div>
+    <div class="row">
         <td *ngFor="let letter of arraySolution; let i = index">
             <tr><button type="button" (click)="exchangeLetter('solution', i)" >{{letter}}</button></tr>
         </td>
