@@ -74,6 +74,7 @@ export class ArcadeModeComponent implements OnInit {
     this.totalPoints += this.getPuntuaciónTarjeta();
     var success: boolean = false;
     while((success == false) && (this.positionCard < this.cards.length)){
+      this.displayClue = false;
       this.blurLevel = 0;
       success = this.loadCard();
       this.positionCard++;
