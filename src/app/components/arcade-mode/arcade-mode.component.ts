@@ -42,11 +42,11 @@ export class ArcadeModeComponent implements OnInit {
   //Variables del nivel de difuminado
   public blurLevel: number = 0;
 
-  constructor(private apiConnectionService: ApiConnectionService) {
+  //Variables de la puntuación
+  private totalPoints: number = 0;
+  private cardPoints: number = 0;
 
-    //Tengo que modificarlo para
-    //this.segundos = 60;
-    //this.isPaused = false;
+  constructor(private apiConnectionService: ApiConnectionService) {
     setInterval(() => this.tick(), 1000);
   }
 
@@ -55,14 +55,11 @@ export class ArcadeModeComponent implements OnInit {
     console.log (this.cards);
 
     this.gameMode = localStorage.getItem('gameMode');
-    //this.gameMode = "Arcade";
-
     this.loadNextCard();
-    
   }
 
   endGame(){
-
+    console.log("Puntos partida: ", this.totalPoints);
   }
 
   loadNextCard(){
@@ -70,6 +67,7 @@ export class ArcadeModeComponent implements OnInit {
     Esta función recorre el array para buscar una tarjeta que se pueda cargar.
     En caso de que no exista ninguna termina la partida 
     */
+    this.totalPoints += this.getPuntuaciónTarjeta();
     var success: boolean = false;
     while((success == false) && (this.positionCard < this.cards.length)){
       this.blurLevel = 0;
@@ -112,8 +110,25 @@ export class ArcadeModeComponent implements OnInit {
     }
   }
 
-  isRightAnwser(){
+  getPuntuaciónTarjeta(): number{
+    /*
+    Esta función devuelve la puntuación obtenida en la tarjeta.
+    */
+    var points = this.cardPoints;
+    if(points == 0){
+      return 0;
+    } else if ((points > 0) && (this.displayClue)){
+      return points -1;
+    } else {
+      return points;
+    }
+  }
 
+  isRightAnwser(){
+    /*
+    Esta función comprueba que el texto almacenado en la variable array solución sea el mismo que en  gameSolución.
+    En caso afirmativo llama a la función loadNextCard().
+    */
     var aux: string;
     for (var i=0; i<this.gameSolution.length; i++){
       if(i==0){
@@ -172,14 +187,19 @@ export class ArcadeModeComponent implements OnInit {
 
         if((this.segundos <= this.gameTime) && (this.segundos > this.gameTime*4/5)){
           this.blurLevel = 0;
+          this.cardPoints = 10;
         } else if((this.segundos <= this.gameTime*4/5) && (this.segundos > this.gameTime*3/5)){
           this.blurLevel = 1;
+          this.cardPoints = 8;
         } else if((this.segundos <= this.gameTime*3/5) && (this.segundos > this.gameTime*2/5)){
           this.blurLevel = 2;
+          this.cardPoints = 6;
         } else if((this.segundos <= this.gameTime*2/5) && (this.segundos > this.gameTime*1/5)){
           this.blurLevel = 3;
+          this.cardPoints = 4;
         }else if(this.segundos <= this.gameTime*1/5){
           this.blurLevel = 4;
+          this.cardPoints = 2;
         }
 
 
@@ -188,11 +208,17 @@ export class ArcadeModeComponent implements OnInit {
         if(this.gameMode == "Survival"){
           this.endGame();
         } else if ((this.gameMode == "Arcade") ||(this.gameMode == "Party")){
+          this.cardPoints = 0;
           this.loadNextCard();
         }
       }
 
     }
+  }
+
+  jumpCard(){
+    this.cardPoints = 0;
+    this.loadNextCard();
   }
 
   showClue(){
