@@ -2,9 +2,8 @@ import { BASE_URL } from './../../app.constants';
 import { Card } from './../../interfaces/Card';
 import { ApiConnectionService } from './../../services/ApiConnection/api-connection.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
-//Falta por definir la mecánia de puntos
-//Falta el fin del juego
 //Hay un error en el cronometro en modo survival
 
 @Component({
@@ -46,7 +45,7 @@ export class ArcadeModeComponent implements OnInit {
   private totalPoints: number = 0;
   private cardPoints: number = 0;
 
-  constructor(private apiConnectionService: ApiConnectionService) {
+  constructor(private apiConnectionService: ApiConnectionService, private router: Router) {
     setInterval(() => this.tick(), 1000);
   }
 
@@ -59,7 +58,12 @@ export class ArcadeModeComponent implements OnInit {
   }
 
   endGame(){
-    console.log("Puntos partida: ", this.totalPoints);
+    /*
+    Esta función termina la partida. Guarda los puntos obtenidos en la memoria local y redirige a la página de fin
+    */
+    var points: string = "" + this.totalPoints;
+    localStorage.setItem('gamePoints', points);
+    this.router.navigateByUrl('endGame');
   }
 
   loadNextCard(){
@@ -95,13 +99,9 @@ export class ArcadeModeComponent implements OnInit {
         this.gameTime = 60;
         this.segundos = 60;
         this.isPaused = false;
-      } else if (this.gameMode == "Party"){
+      } else if ((this.gameMode == "Party") || (this.gameMode == "Survival")){
         this.gameTime = this.cards[this.positionCard].time;
         this.segundos = this.cards[this.positionCard].time;
-        this.isPaused = false;
-      } else if((this.positionCard == 0) && (this.gameMode == "Survival")){
-        this.gameTime = 300;
-        this.segundos = 300;
         this.isPaused = false;
       }
       return true;
@@ -217,6 +217,9 @@ export class ArcadeModeComponent implements OnInit {
   }
 
   jumpCard(){
+    if(this.gameMode == "Survival"){
+      this.endGame();
+    }
     this.cardPoints = 0;
     this.loadNextCard();
   }
