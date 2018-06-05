@@ -3,19 +3,87 @@
 <h1>
   {{segundos | number: '2.0'}}
 </h1>
+<!--Botón siguiente-->
+<div>
+    <button (click)="loadNextCard()">Siguiente</button>
+</div>
 <!--Image-->
-<div class="container" *ngIf="imageEnlarge == false">
-    <div class="row">
-        <div class="col-md-2 col-sm-1"></div>
-        <div class="col-md-8 col-sm-10">
+<div [ngSwitch]="blurLevel" >
+    <div *ngSwitchCase="0" >
+        <div style="filter: blur(40px);" class="container" *ngIf="imageEnlarge == false">
+            <div class="row">
+                <div class="col-md-2 col-sm-1"></div>
+                <div class="col-md-8 col-sm-10">
+                    <img src={{gameImage}} (click)="imageSizeToggle()">
+                </div>
+                <div class="col-md-2 col-sm-1"></div>
+            </div>
+        </div>
+        <div  *ngIf="imageEnlarge == true">
+            <img style="filter: blur(40px);" src={{gameImage}} (click)="imageSizeToggle()">
+        </div>
+    </div>
+    <div *ngSwitchCase="1" >
+        <div style="filter: blur(30px);" class="container" *ngIf="imageEnlarge == false">
+            <div class="row">
+                <div class="col-md-2 col-sm-1"></div>
+                <div class="col-md-8 col-sm-10">
+                    <img src={{gameImage}} (click)="imageSizeToggle()">
+                </div>
+                <div class="col-md-2 col-sm-1"></div>
+            </div>
+        </div>
+        <div  *ngIf="imageEnlarge == true">
+            <img style="filter: blur(30px);" src={{gameImage}} (click)="imageSizeToggle()">
+        </div>
+    </div>
+    <div *ngSwitchCase="2" >
+        <div style="filter: blur(20px);" class="container" *ngIf="imageEnlarge == false">
+            <div class="row">
+                <div class="col-md-2 col-sm-1"></div>
+                <div class="col-md-8 col-sm-10">
+                    <img src={{gameImage}} (click)="imageSizeToggle()">
+                </div>
+                <div class="col-md-2 col-sm-1"></div>
+            </div>
+        </div>
+        <div  *ngIf="imageEnlarge == true">
+            <img style="filter: blur(20px);" src={{gameImage}} (click)="imageSizeToggle()">
+        </div>
+    </div>
+    <div *ngSwitchCase="3" >
+        <div style="filter: blur(10px);" class="container" *ngIf="imageEnlarge == false">
+            <div class="row">
+                <div class="col-md-2 col-sm-1"></div>
+                <div class="col-md-8 col-sm-10">
+                    <img src={{gameImage}} (click)="imageSizeToggle()">
+                </div>
+                <div class="col-md-2 col-sm-1"></div>
+            </div>
+        </div>
+        <div  *ngIf="imageEnlarge == true">
+            <img style="filter: blur(10px);" src={{gameImage}} (click)="imageSizeToggle()">
+        </div>
+    </div>
+    <div *ngSwitchCase="4" >
+        <div class="container" *ngIf="imageEnlarge == false">
+            <div class="row">
+                <div class="col-md-2 col-sm-1"></div>
+                <div class="col-md-8 col-sm-10">
+                    <img src={{gameImage}} (click)="imageSizeToggle()">
+                </div>
+                <div class="col-md-2 col-sm-1"></div>
+            </div>
+        </div>
+        <div  *ngIf="imageEnlarge == true">
             <img src={{gameImage}} (click)="imageSizeToggle()">
         </div>
-        <div class="col-md-2 col-sm-1"></div>
     </div>
 </div>
-<div  *ngIf="imageEnlarge == true">
-    <img src={{gameImage}} (click)="imageSizeToggle()">
-</div>
+
+
+
+<!--Pista-->
 <div>
     <div *ngIf="displayClue == true">
         <p>{{gameClue}}</p>
