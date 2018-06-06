@@ -26,5 +26,38 @@ h1 {
 }
 
 .keyboard{
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    font-family: 'Orbitron';
+    border: 5px solid #666666;
+    border-radius: 3px;
 
+}
+
+.solution {
+    background-color: transparent;
+    color: #666666;
+}
+
+.keyboard-letters {
+    
+    background-color: #666666;
+    color: white;
+}
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
+    min-height: 50px;
+    left: 50%;
+}
+
+td { 
+    padding: 3px;
 }

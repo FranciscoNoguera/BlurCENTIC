@@ -112,14 +112,14 @@
 </div>
 
 <div>
-    <div class="row">
+    <table>
         <td *ngFor="let letter of arraySolution; let i = index">
-            <tr><button type="button" (click)="exchangeLetter('solution', i)" >{{letter}}</button></tr>
+            <tr><button type="button" class="keyboard solution" (click)="exchangeLetter('solution', i)" >{{letter}}</button></tr>
         </td>
-    </div>
-    <div>
+    </table>
+    <table>
         <td *ngFor="let letter of arrayKeyboard; let j = index">
-            <tr><button type="button" (click)="exchangeLetter('keyboard', j)" >{{letter}}</button></tr>
+            <tr><button type="button" class="keyboard keyboard-letters" (click)="exchangeLetter('keyboard', j)" >{{letter}}</button></tr>
         </td>
-    </div>
+    </table>
 </div>
