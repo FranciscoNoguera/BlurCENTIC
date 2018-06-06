@@ -44,6 +44,7 @@ export class ArcadeModeComponent implements OnInit {
   //Variables de la puntuación
   private totalPoints: number = 0;
   private cardPoints: number = 0;
+  private maxPoints: number = 0;
 
   constructor(private apiConnectionService: ApiConnectionService, private router: Router) {
     setInterval(() => this.tick(), 1000);
@@ -61,8 +62,15 @@ export class ArcadeModeComponent implements OnInit {
     /*
     Esta función termina la partida. Guarda los puntos obtenidos en la memoria local y redirige a la página de fin
     */
-    var points: string = "" + this.totalPoints;
-    localStorage.setItem('gamePoints', points);
+    if(this.totalPoints == 0){
+      let points: string = "0";
+      localStorage.setItem('gamePoints', points);
+      this.apiConnectionService.sendPoints(0);
+    } else {
+      let points: string = "" + parseInt(localStorage.getItem('points'))*this.totalPoints/this.maxPoints;
+      localStorage.setItem('gamePoints', points);
+      this.apiConnectionService.sendPoints(parseInt(localStorage.getItem('points'))*this.totalPoints/this.maxPoints);
+    }
     this.router.navigateByUrl('endGame');
   }
 
@@ -73,10 +81,13 @@ export class ArcadeModeComponent implements OnInit {
     */
     this.totalPoints += this.getPuntuaciónTarjeta();
     var success: boolean = false;
-    while((success == false) && (this.positionCard < this.cards.length)){
+    while((success == false) && (this.positionCard <= this.cards.length)){
       this.displayClue = false;
       this.blurLevel = 0;
       success = this.loadCard();
+      if(success == true){
+        this.maxPoints += 10;
+      }
       this.positionCard++;
     }
     if(this.positionCard >= this.cards.length){

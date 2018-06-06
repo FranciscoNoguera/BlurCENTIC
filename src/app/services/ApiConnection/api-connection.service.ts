@@ -15,6 +15,7 @@ export class ApiConnectionService {
 
   getCredentials(){
     /*
+    Esta función se utiliza para recuperar los parámetros invitation y validation de la url
     */
     this.activatedRoute.queryParams.subscribe(invite => {
       localStorage.setItem('invitation', invite["invitation"]);
@@ -22,29 +23,16 @@ export class ApiConnectionService {
     });
   }
 
-  getCards(): Card[]{
-    /*
-    */
-   let messageHeader = new Headers();
-   messageHeader.append( 'Content-Type', 'application/json' );
-   console.log("lanzando petición");
-//De momento hardcodeo la invitación
-localStorage.setItem('invitation', "1505682c-697b-11e8-95c5-005056992599");
-//Esto funciona pero no recupera los parametros que esperaba
-   this.http.get(ITEMS_URL + localStorage.getItem('invitation'), {headers: messageHeader})
+  getInfo(){
+    let messageHeader = new Headers();
+    messageHeader.append( 'Content-Type', 'application/json' );
+    this.http.get(ITEMS_URL + localStorage.getItem('invitation'), {headers: messageHeader})
     .map( response => response.json()).catch(this.handleErrors).subscribe(info => {
       localStorage.setItem('game', info['game']);
       localStorage.setItem('points', info['points']);
-      console.log(info);
-      //console.log(info['game']);
-      //console.log(info['invitation']);
-      //console.log(info['points']);
     });
-
-    let cards: Card[];
-    return cards;
   }
-/*
+
   getCards(): Card[] {
     let cards: Card[] = [ 
       {
@@ -94,7 +82,7 @@ localStorage.setItem('invitation', "1505682c-697b-11e8-95c5-005056992599");
       }
   ];
   return cards;
-  }*/
+  }
 
   sendPoints(points: number){
     let messageHeader = new Headers();

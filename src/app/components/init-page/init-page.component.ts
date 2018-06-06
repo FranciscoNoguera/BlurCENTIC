@@ -14,6 +14,7 @@ export class InitPageComponent implements OnInit {
 
   ngOnInit() {
     this.apiConnectionService.getCredentials();
+    this.apiConnectionService.getInfo();
   }
 
   reditectToArcade(){
