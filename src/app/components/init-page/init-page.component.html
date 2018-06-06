@@ -1,27 +1,35 @@
 
-<div class="speech-bubble speech-bubble">
-  <p>Bienvenido a Blur</p>
-  <p>Para empezar pulse el botón</p>
-
-</div>
-
-
 <div class="container">
   <div class="row">
-      <div class="col-md-3 col-sm-1"></div>
-      <div class="col-md-6 col-sm-10">
-          <img src="../../../assets/Pet.png" alt="">
-      </div>
-      <div class="col-md-3 col-sm-1"></div>
+    <div class="titulo">
+        <img src="../../../assets/blur.png" alt="">
+    </div>
+</div>
+
+<div class="caja">
+  <p>Bienvenido a Blur!</p>
+  <p>Aquí podrás poner a prueba tu ingenio.</p>
+</div>
+
+<div class="container">
+
+  <div class="logo">
+        <img src="../../../assets/PetGif.gif" alt="">
   </div>
+</div>
 
 
   <div class="row">
-    <div class="col-lg-6 col-md-12">
-      <button type="button" class="btn btn-block btn-info" (click)="reditectToArcade()" >Empezar</button>
+    <div class="boton1">
+      <button type="button" class="btn btn-block btn-info bttn-jelly" (click)="reditectToArcade()" >Empezar</button>
     <br></div>
-    <div class="col-lg-6 col-md-12">
-      <button type="button" class="btn btn-block btn-info">Instrucciones</button>
+    <div class="boton2">
+      <button type="button" class="btn btn-block btn-info bttn-jelly" (click)="reditectToInstruction()">Instrucciones</button>
     <br></div>
   </div>
 </div>
+
+<div class="container">
+  <audio src="../../../assets/musica.mp3" autoplay></audio>
+</div>
+

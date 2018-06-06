@@ -1,0 +1,105 @@
+
+p {
+	color: white;
+	text-align: center;
+font-size: 20px;
+	padding: 1px;
+}
+
+.caja {
+width: 400px;
+height: 120px;
+position: relative;
+	top: 175px;
+	left: 680px;
+background: #9e9e9ef8;
+margin: 0 0 25px;
+overflow: hidden;
+padding: 10px;
+border-radius: 35px 35px 35px 35px;
+-moz-border-radius: 35px 35px 35px 35px;
+-webkit-border-radius: 35px 35px 35px 0px;
+border: 2px solid #797979
+}
+
+.titulo {
+position: absolute;
+	top: 30px;
+	left: 520px;
+}
+
+.logo {
+position: absolute;
+	top: 270px;
+	left: 545px;
+}
+
+.boton1{
+width: 170px;
+height: 60px;
+position: absolute;
+	top: 500px;
+left: 575px;
+
+}
+
+.boton2{
+width: 170px;
+height: 60px;
+position: absolute;
+	top: 545px;
+left: 575px;
+}
+
+
+.bttn-jelly {
+	margin: 0;
+	padding: 0;
+	border-width: 0;
+	border-color: transparent;
+	background: rgba(6, 78, 187, 0.904);
+	font-weight: 400;
+	cursor: pointer;
+	position: relative;
+	font-size: 20px;
+	font-family: inherit;
+	padding: 5px 12px;
+	overflow: hidden;
+	border-radius: 50px;
+	background: rgba(6, 96, 231, 0.904);
+	color: #ffffff;
+	-webkit-transition: all 0.2s cubic-bezier(0.02, 0.01, 0.47, 1);
+	transition: all 0.2s cubic-bezier(0.02, 0.01, 0.47, 1);
+  }
+  .bttn-jelly:before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 50px;
+	background: currentColor;
+	content: '';
+	z-index: -1;
+	opacity: 0;
+	-webkit-transition: all 0.2s cubic-bezier(0.02, 0.01, 0.47, 1);
+	transition: all 0.2s cubic-bezier(0.02, 0.01, 0.47, 1);
+	-webkit-transform: scale(0.2);
+			transform: scale(0.2);
+  }
+  .bttn-jelly:hover,
+  .bttn-jelly:focus {
+	box-shadow: 0 1px 8px rgba(58,51,53,0.4);
+	-webkit-transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+	transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+	-webkit-transform: scale(1.1);
+			transform: scale(1.1);
+  }
+  .bttn-jelly:hover:before,
+  .bttn-jelly:focus:before {
+	opacity: 0.15;
+	-webkit-transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+	transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+	-webkit-transform: scale(1);
+			transform: scale(1);
+  }

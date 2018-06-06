@@ -1,7 +1,7 @@
 import { Card } from './../../interfaces/Card';
 import { ApiConnectionService } from './../../services/ApiConnection/api-connection.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-init-page',
@@ -17,8 +17,12 @@ export class InitPageComponent implements OnInit {
     this.apiConnectionService.getInfo();
   }
 
-  reditectToArcade(){
+  reditectToArcade() {
     this.router.navigateByUrl('init');
+  }
+
+  reditectToInstruction() {
+    this.router.navigateByUrl('instruction');
   }
 
 }

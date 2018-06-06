@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-end-game',
@@ -8,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class EndGameComponent implements OnInit {
   public obteinedPoints: String;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.obteinedPoints = localStorage.getItem('gamePoints');
+  }
+
+  reditectToMenu() {
+    this.router.navigateByUrl('');
   }
 
 }

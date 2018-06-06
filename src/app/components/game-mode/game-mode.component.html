@@ -1,5 +1,27 @@
-<div>
-  <button (click)="gameArcade()">Modo Arcade</button>
-  <button (click)="gameParty()">Modo Party</button>
-  <button (click)="gameSurvival()">Modo Survival</button>
+<div class="container">
+
+  <div class="caja">
+    <p>Elige el modo al que te quieres enfrentar...</p>
+  </div>
+  
+  <div class="container">
+  
+    <div class="logo">
+          <img src="../../../assets/Pet.png" alt="">
+    </div>
+  </div>
+  
+  
+  
+<div class="row">
+    <div class="boton1">
+      <button type="button" class="btn btn-block btn-info bttn-jelly" (click)="gameArcade()">Modo Arcade</button>
+    <br></div>
+    <div class="boton2">
+        <button type="button" class="btn btn-block btn-info bttn-jelly" (click)="gameParty()">Modo Party</button>
+      <br></div>
+    <div class="boton3">
+      <button type="button" class="btn btn-block btn-info bttn-jelly" (click)="gameSurvival()">Modo Survival</button>
+    <br></div>
+  </div>
 </div>
