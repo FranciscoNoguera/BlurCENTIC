@@ -4,7 +4,9 @@ import { Observable } from 'rxjs/Observable';
 import { Http, Headers, Response } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 import { ITEMS_URL } from '../../app.constants';
+import { SEND_POINTS_URL } from '../../app.constants';
 
 @Injectable()
 export class ApiConnectionService {
@@ -20,17 +22,29 @@ export class ApiConnectionService {
     });
   }
 
-  //getCards(){
+  getCards(): Card[]{
     /*
     */
-   /*let messageHeader = new Headers();
+   let messageHeader = new Headers();
    messageHeader.append( 'Content-Type', 'application/json' );
+   console.log("lanzando petición");
+//De momento hardcodeo la invitación
+localStorage.setItem('invitation', "1505682c-697b-11e8-95c5-005056992599");
+//Esto funciona pero no recupera los parametros que esperaba
    this.http.get(ITEMS_URL + localStorage.getItem('invitation'), {headers: messageHeader})
-    .map(( response: Response) => {
-      console.log(response);
+    .map( response => response.json()).catch(this.handleErrors).subscribe(info => {
+      localStorage.setItem('game', info['game']);
+      localStorage.setItem('points', info['points']);
+      console.log(info);
+      //console.log(info['game']);
+      //console.log(info['invitation']);
+      //console.log(info['points']);
     });
-  }*/
 
+    let cards: Card[];
+    return cards;
+  }
+/*
   getCards(): Card[] {
     let cards: Card[] = [ 
       {
@@ -80,5 +94,31 @@ export class ApiConnectionService {
       }
   ];
   return cards;
+  }*/
+
+  sendPoints(points: number){
+    let messageHeader = new Headers();
+   messageHeader.append( 'Content-Type', 'application/json' );
+    
+    let message = {
+      "validation": localStorage.getItem('validation'),
+      "invitation": localStorage.getItem('invitation'),
+      "percent": points,
+      "title": "Puntos ganados",
+      "resume": "Has ganado puntos con el juego del Blur",
+      "message": "Como has jugado al juego del Blur has recibido puntos por ello"
+    };
+
+    this.http.post(SEND_POINTS_URL, JSON.stringify(message),{headers: messageHeader})
+    .map(response => response.json()).catch(this.handleErrors).subscribe(info => {
+      console.log(info);
+    });
+  }
+
+  handleErrors(error: Response) {
+    /*
+    Esta función maneja los errores producidos durante la comunicación.
+    */
+    return Observable.throw(error);
   }
 }
