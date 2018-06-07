@@ -16,7 +16,7 @@ export class EndGameComponent implements OnInit {
   }
 
   reditectToMenu() {
-    this.router.navigateByUrl('');
+    this.router.navigateByUrl('init');
   }
 
 }

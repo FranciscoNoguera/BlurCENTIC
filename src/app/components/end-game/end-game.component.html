@@ -1,25 +1,28 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-6"></div>
-    <div class="col-md-6">
-      <div class="caja">
-        <p>¡Has conseguido <b><u>{{obteinedPoints}}</u></b> Puntos!</p>
-        <p>Prueba de nuevo. ¡Seguro que mejorarás tu puntuación!</p>
-      </div>
+<br>
+<div class="row">
+  <div class="col-md-6 col-xs-1"></div>
+  <div class="col-md-5 col-xs-10 speech">
+      <p>¡Has conseguido <b><u>{{obteinedPoints}}</u></b> Puntos!</p>
+      <p>Prueba de nuevo. ¡Seguro que mejorarás tu puntuación!</p>
+  </div>
+  <div class="col-xs-1"></div>
+</div>
+
+<div class="row">
+  <div class="col-md-5 col-sm-4 col-xs-3"></div>
+  <div class="col-md-2 col-sm-4 col-xs-6">
+      <img src="../../../assets/Pet.png" alt="">
+  </div>
+  <div class="col-md-5 col-sm-4 col-xs-3"></div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col-md-4 col-xs-2"></div>
+    <div class="col-md-4 col-xs-8">
+      <button type="button" class="btn" (click)="reditectToMenu()" >Otra vez</button>
     </div>
-  </div>
-  
-
-  <div class="container">
-    <div class="logo">
-          <img src="../../../assets/Pet.png" alt="">
-    </div>
-  </div>
-
-
-  <div class="boton1">
-    <button type="button" class="btn btn-block btn-info bttn-jelly" (click)="reditectToMenu()" >Ir al Menú</button>
-  </div>
+    <div class="col-md-4 col-xs-2"></div>
 </div>
 
 <div class="container">
