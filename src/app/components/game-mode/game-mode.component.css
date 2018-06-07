@@ -7,19 +7,19 @@ font-size: 20px;
 }
 
 .caja {
-width: 400px;
-height: 120px;
-position: relative;
-	top: 175px;
-	left: 680px;
-background: #9e9e9ef8;
-margin: 0 0 25px;
-overflow: hidden;
-padding: 10px;
-border-radius: 35px 35px 35px 35px;
--moz-border-radius: 35px 35px 35px 35px;
--webkit-border-radius: 35px 35px 35px 0px;
-border: 2px solid #797979
+	/*width: 400px;
+	height: 120px;
+	/*position: relative;
+		top: 175px;
+		left: 680px;*/
+	background: #9e9e9ef8;
+	margin: 0 0 25px;
+	overflow: hidden;
+	padding: 10px;
+	border-radius: 35px 35px 35px 35px;
+	-moz-border-radius: 35px 35px 35px 35px;
+	-webkit-border-radius: 35px 35px 35px 0px;
+	border: 2px solid #797979
 }
 
 .titulo {
@@ -29,9 +29,10 @@ position: absolute;
 }
 
 .logo {
-position: absolute;
-	top: 270px;
-	left: 545px;
+	position: absolute;
+	/*top: 30%;*/
+	left: 50%;
+	margin-left: -100px;
 }
 
 .boton1{

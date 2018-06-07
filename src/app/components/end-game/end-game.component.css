@@ -7,11 +7,11 @@ font-size: 20px;
 }
 
 .caja {
-width: 400px;
+/*width: 400px;
 height: 120px;
-position: relative;
+/*position: relative;
 	top: 175px;
-	left: 680px;
+	left: 680px;*/
 background: #9e9e9ef8;
 margin: 0 0 25px;
 overflow: hidden;
@@ -30,16 +30,17 @@ position: absolute;
 
 .logo {
 position: absolute;
-	top: 270px;
-	left: 545px;
+	/*top: 30%;*/
+	left: 50%;
+	margin-left: -100px;
 }
 
 .boton1{
 width: 170px;
 height: 60px;
 position: absolute;
-	top: 500px;
-left: 575px;
+	/*top: 500px;*/
+left: 50%;
 
 }
 
@@ -47,8 +48,8 @@ left: 575px;
 width: 170px;
 height: 60px;
 position: absolute;
-	top: 545px;
-left: 575px;
+	/*top: 545px;*/
+left: 50%;
 }
 
 
@@ -60,7 +61,7 @@ left: 575px;
 	background: rgba(6, 78, 187, 0.904);
 	font-weight: 400;
 	cursor: pointer;
-	position: relative;
+	/*position: relative;*/
 	font-size: 20px;
 	font-family: inherit;
 	padding: 5px 12px;
