@@ -14,7 +14,7 @@ export class InstructionPageComponent implements OnInit {
   }
 
   reditectToMenu() {
-    this.router.navigateByUrl('');
+    this.router.navigateByUrl('home', {replaceUrl: true});
   }
 
 }

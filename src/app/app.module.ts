@@ -9,19 +9,17 @@ import { ApiConnectionService } from './services/ApiConnection/api-connection.se
 /*Componentes*/
 import { ArcadeModeComponent } from './components/arcade-mode/arcade-mode.component';
 import { InitPageComponent } from './components/init-page/init-page.component';
-import { GameModeComponent } from './components/game-mode/game-mode.component';
 import { EndGameComponent } from './components/end-game/end-game.component';
+import { InstructionPageComponent } from './components/instruction-page/instruction-page.component';
 
 /*Rutas*/
 import { ROUTES } from './app.routing';
-import { InstructionPageComponent } from './instruction-page/instruction-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ArcadeModeComponent,
     InitPageComponent,
-    GameModeComponent,
     EndGameComponent,
     InstructionPageComponent
   ],

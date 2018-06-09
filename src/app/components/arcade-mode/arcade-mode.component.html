@@ -1,19 +1,25 @@
 <link href="https://fonts.googleapis.com/css?family=Orbitron" rel='stylesheet' type="text/css">
-<!--Timer-->
+
+<!--Cronómetro-->
 <h1>
   {{segundos | number: '2.0'}}
 </h1>
+
 <!--Botón siguiente-->
 <div class="row spacer">
     <div class="col-lg-4 col-md-3 col-xs-2"></div>
-    <div class="col-lg-4 col-md-6 col-xs-8">
+    <div class="col-lg-2 col-md-3 col-xs-4">
+        <h4><b>Letra: {{keyboardAux}}</b></h4>
+    </div>
+    <div class="col-lg-2 col-md-3 col-xs-4">
         <button class="jump-arrow" (click)="jumpCard()">
             <span class="glyphicon glyphicon-arrow-right"></span>
         </button>
     </div>
     <div class="col-lg-4 col-md-3 col-xs-2"></div>
 </div>
-<!--Image-->
+
+<!--Imagen-->
 <div [ngSwitch]="blurLevel" class="spacer">
     <div *ngSwitchCase="0" >
         <div style="filter: blur(40px);" class="container" *ngIf="imageEnlarge == false">
@@ -105,12 +111,6 @@
 </div>
 
 <!--Teclado-->
-<div *ngFor ="let letter of arraySolution; let i = index" class="row">
-    <div class="col-sm-2">
-        <!--<button class="btn"> {{letter}} </button>-->
-    </div>
-</div>
-
 <div>
     <table>
         <td *ngFor="let letter of arraySolution; let i = index">
@@ -118,8 +118,23 @@
         </td>
     </table>
     <table>
-        <td *ngFor="let letter of arrayKeyboard; let j = index">
-            <tr><button type="button" class="keyboard keyboard-letters" (click)="exchangeLetter('keyboard', j)" >{{letter}}</button></tr>
-        </td>
+        <tr>
+            <td><button class="keyboard keyboard-letters" (click)="exchangeLetter('keyboard', 0)">{{arrayKeyboard[0]}}</button></td>
+            <td><button class="keyboard keyboard-letters" (click)="exchangeLetter('keyboard', 1)">{{arrayKeyboard[1]}}</button></td>
+            <td><button class="keyboard keyboard-letters" (click)="exchangeLetter('keyboard', 2)">{{arrayKeyboard[2]}}</button></td>
+            <td><button class="keyboard keyboard-letters" (click)="exchangeLetter('keyboard', 3)">{{arrayKeyboard[3]}}</button></td>
+            <td><button class="keyboard keyboard-letters" (click)="exchangeLetter('keyboard', 4)">{{arrayKeyboard[4]}}</button></td>
+            <td><button class="keyboard keyboard-letters" (click)="exchangeLetter('keyboard', 5)">{{arrayKeyboard[5]}}</button></td>
+            <td><button class="keyboard keyboard-letters" (click)="exchangeLetter('keyboard', 6)">{{arrayKeyboard[6]}}</button></td>
+        </tr>
+        <tr>
+            <td><button class="keyboard keyboard-letters" (click)="exchangeLetter('keyboard', 7)">{{arrayKeyboard[7]}}</button></td>
+            <td><button class="keyboard keyboard-letters" (click)="exchangeLetter('keyboard', 8)">{{arrayKeyboard[8]}}</button></td>
+            <td><button class="keyboard keyboard-letters" (click)="exchangeLetter('keyboard', 9)">{{arrayKeyboard[9]}}</button></td>
+            <td><button class="keyboard keyboard-letters" (click)="exchangeLetter('keyboard', 10)">{{arrayKeyboard[10]}}</button></td>
+            <td><button class="keyboard keyboard-letters" (click)="exchangeLetter('keyboard', 11)">{{arrayKeyboard[11]}}</button></td>
+            <td><button class="keyboard keyboard-letters" (click)="exchangeLetter('keyboard', 12)">{{arrayKeyboard[12]}}</button></td>
+            <td><button class="keyboard keyboard-letters" (click)="exchangeLetter('keyboard', 13)">{{arrayKeyboard[13]}}</button></td>
+        </tr>
     </table>
 </div>

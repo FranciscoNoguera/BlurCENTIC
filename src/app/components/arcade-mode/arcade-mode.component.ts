@@ -4,8 +4,6 @@ import { ApiConnectionService } from './../../services/ApiConnection/api-connect
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-//Hay un error en el cronometro en modo survival
-
 @Component({
   selector: 'app-arcade-mode',
   templateUrl: './arcade-mode.component.html',
@@ -50,28 +48,32 @@ export class ArcadeModeComponent implements OnInit {
     setInterval(() => this.tick(), 1000);
   }
 
-  ngOnInit() {
-    this.cards = this.apiConnectionService.getCards();
-    console.log (this.cards);
-
+  ngOnInit(){
+    for(var i=0; i<(JSON.parse(localStorage.getItem('cards'))).length; i++){
+      this.cards[i] = JSON.parse(localStorage.getItem('cards'))[i];
+    }
     this.gameMode = localStorage.getItem('gameMode');
-    this.loadNextCard();
+
+    if(localStorage.getItem('gameStarted') == 'true'){ 
+      this.maxPoints = parseInt(localStorage.getItem('maxPoints'));
+      this.totalPoints = parseInt(localStorage.getItem('totalPoints'));
+      this.positionCard = parseInt(localStorage.getItem('positionCard'));
+      this.loadNextCard();
+      this.segundos = parseInt(localStorage.getItem('time'));
+
+    } else {
+      localStorage.setItem('gameStarted', 'true');
+      this.loadNextCard();
+    }
   }
 
   endGame(){
     /*
     Esta función termina la partida. Guarda los puntos obtenidos en la memoria local y redirige a la página de fin
     */
-    if(this.totalPoints == 0){
-      let points: string = "0";
-      localStorage.setItem('gamePoints', points);
-      this.apiConnectionService.sendPoints(0);
-    } else {
-      let points: string = "" + parseInt(localStorage.getItem('points'))*this.totalPoints/this.maxPoints;
-      localStorage.setItem('gamePoints', points);
-      this.apiConnectionService.sendPoints(parseInt(localStorage.getItem('points'))*this.totalPoints/this.maxPoints);
-    }
-    this.router.navigateByUrl('endGame');
+    var points: number = this.totalPoints/ this.maxPoints * 100;
+    localStorage.setItem('gamePoints', ' ' + points);
+    this.router.navigateByUrl('endGame', {replaceUrl: true});
   }
 
   loadNextCard(){
@@ -80,45 +82,40 @@ export class ArcadeModeComponent implements OnInit {
     En caso de que no exista ninguna termina la partida 
     */
     this.totalPoints += this.getPuntuaciónTarjeta();
-    var success: boolean = false;
-    while((success == false) && (this.positionCard <= this.cards.length)){
+    localStorage.setItem('totalPoints', ' ' + this.totalPoints);
+    if(this.positionCard < this.cards.length){
       this.displayClue = false;
+      this.loadCard();
       this.blurLevel = 0;
-      success = this.loadCard();
-      if(success == true){
-        this.maxPoints += 10;
-      }
+      localStorage.setItem('maxPoints', ' ' + this.maxPoints);
+      this.maxPoints += 10;
       this.positionCard++;
-    }
-    if(this.positionCard >= this.cards.length){
+      localStorage.setItem('positionCard', ' ' + (this.positionCard - 1));
+    } else {
       this.endGame();
     }
   }
 
-  loadCard(): boolean{
+  loadCard(){
     /*
     Esta función recupera los valores del array y los carga para el juego.
     También gestiona el modo de juego. 
     */
-    if(this.cards[this.positionCard].publish){
-      this.gameImage = BASE_URL + this.cards[this.positionCard].imageURL;
-      this.gameClue = this.cards[this.positionCard].clue;
-      this.gameSolution = this.cards[this.positionCard].solution;
-      this.arraySolution = new Array((this.cards[this.positionCard].solution).length);
-      this.arrayKeyboard = this.shuffleArray(this.cards[this.positionCard].letters);
+    this.gameImage = BASE_URL + this.cards[this.positionCard].imageURL;
+    this.gameClue = this.cards[this.positionCard].clue;
+    this.gameSolution = this.cards[this.positionCard].solution;
+    this.arraySolution = new Array((this.cards[this.positionCard].solution).length);
 
-      if(this.gameMode == "Arcade"){
-        this.gameTime = 60;
-        this.segundos = 60;
-        this.isPaused = false;
-      } else if ((this.gameMode == "Party") || (this.gameMode == "Survival")){
-        this.gameTime = this.cards[this.positionCard].time;
-        this.segundos = this.cards[this.positionCard].time;
-        this.isPaused = false;
-      }
-      return true;
-    } else {
-      return false;
+    this.arrayKeyboard = this.suffleArray(this.cards[this.positionCard].solution);
+    
+    if(this.gameMode == "Arcade"){
+      this.gameTime = 60;
+      this.segundos = 60;
+      this.isPaused = false;
+    } else if ((this.gameMode == "Party") || (this.gameMode == "Survival")){
+      this.gameTime = this.cards[this.positionCard].time;
+      this.segundos = this.cards[this.positionCard].time;
+      this.isPaused = false;
     }
   }
 
@@ -170,14 +167,22 @@ export class ArcadeModeComponent implements OnInit {
     }
   }
 
-  shuffleArray(letters: string): string[]{
+  suffleArray(letters:string): string[]{
     /*
-    Esta función baraja las letras del string solución y devuelve un array de caracteres con las letras barajadas. 
+    Completa el teclado con letras aleatorias y mezcla dichas letras.
+    Devuelve un array con el que se forma el teclado.
     */
-    var arrayLetters: string[] = new Array(letters.length);
-    for(var i = 0; i < letters.length; i++) {
-      arrayLetters[i] = letters.substr(i, 1);
+    var text = letters;
+    let possibleCaracters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    for(var i=letters.length; i<14; i++){
+      text += possibleCaracters.charAt(Math.floor(Math.random()*possibleCaracters.length));
     }
+
+    var arrayLetters: string[] = new Array(text.length);
+    for(var i = 0; i < text.length; i++) {
+      arrayLetters[i] = text.substr(i, 1);
+    }
+
     let j: number;
     let cambio: string;
     for(var i = 0; i < arrayLetters.length; i++) {
@@ -189,6 +194,7 @@ export class ArcadeModeComponent implements OnInit {
     return arrayLetters;
   }
 
+
   private tick(): void {
     /*
     Esta función modifica el valor del tiempo en el cronómetro
@@ -196,7 +202,7 @@ export class ArcadeModeComponent implements OnInit {
     if(this.isPaused == false){
       if(this.segundos > 0){
         --this.segundos
-
+        localStorage.setItem('time', ' ' + (this.segundos));
         if((this.segundos <= this.gameTime) && (this.segundos > this.gameTime*4/5)){
           this.blurLevel = 0;
           this.cardPoints = 10;
@@ -214,7 +220,6 @@ export class ArcadeModeComponent implements OnInit {
           this.cardPoints = 2;
         }
 
-
       } else{
         this.togglePause();
         if(this.gameMode == "Survival"){
@@ -229,6 +234,9 @@ export class ArcadeModeComponent implements OnInit {
   }
 
   jumpCard(){
+    /*
+    Carga la siguiente tarjeta o en el caso del modo de juego Survival termina la partida
+    */
     if(this.gameMode == "Survival"){
       this.endGame();
     }

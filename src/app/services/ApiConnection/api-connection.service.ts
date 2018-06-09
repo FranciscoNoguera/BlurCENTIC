@@ -26,11 +26,13 @@ export class ApiConnectionService {
   getInfo(){
     let messageHeader = new Headers();
     messageHeader.append( 'Content-Type', 'application/json' );
-    this.http.get(ITEMS_URL + localStorage.getItem('invitation'), {headers: messageHeader})
-    .map( response => response.json()).catch(this.handleErrors).subscribe(info => {
+    return this.http.get(ITEMS_URL + localStorage.getItem('invitation'), {headers: messageHeader})
+    .map( response => response.json()).catch(this.handleErrors);
+    
+    /*.subscribe(info => {
       localStorage.setItem('game', info['game']);
       localStorage.setItem('points', info['points']);
-    });
+    });*/
   }
 
   getCards(): Card[] {

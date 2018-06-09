@@ -5,6 +5,22 @@ h1 {
     font-family: 'Orbitron';
     text-align: center;
 }
+
+.portapapeles {
+    background-color: #666666;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+}
+
+.portapapeles h2 {
+    
+    color: white;
+    font-family: 'Orbitron';
+    text-align: center;
+    
+}
+
 .spacer {
     padding-bottom: 10px;
 }
@@ -26,13 +42,13 @@ h1 {
 }
 
 .keyboard{
-    height: 40px;
-    width: 40px;
+    height: 50px;
+    width: 50px;
     text-align: center;
     font-family: 'Orbitron';
     border: 5px solid #666666;
     border-radius: 3px;
-
+    font-size: 30px;
 }
 
 .solution {

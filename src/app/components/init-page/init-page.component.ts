@@ -14,11 +14,17 @@ export class InitPageComponent implements OnInit {
 
   ngOnInit() {
     this.apiConnectionService.getCredentials();
-    this.apiConnectionService.getInfo();
+    
+    this.apiConnectionService.getInfo().subscribe(info => {
+      localStorage.setItem('data', JSON.stringify(info['data']));
+      localStorage.setItem('cards', JSON.stringify(info['items']));
+      localStorage.setItem('gameMode', info['config']['id']);
+    });
   }
 
   reditectToArcade() {
-    this.router.navigateByUrl('init');
+    localStorage.setItem('gameStarted', 'false');
+    this.router.navigateByUrl('game', {replaceUrl: true});
   }
 
   reditectToInstruction() {

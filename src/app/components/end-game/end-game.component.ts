@@ -9,14 +9,9 @@ import { Router } from '@angular/router';
 export class EndGameComponent implements OnInit {
   public obteinedPoints: String;
 
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit() {
     this.obteinedPoints = localStorage.getItem('gamePoints');
   }
-
-  reditectToMenu() {
-    this.router.navigateByUrl('init');
-  }
-
 }
