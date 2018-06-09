@@ -1,3 +1,12 @@
+/**
+ * Este componente implementa la pantalla de instrucciones del juego
+ * @author Francisco Noguera Fuentes
+ * @author JUan Martinez Romero
+ * @author Sergio Gil Sotos
+ * @author Francisco Miguel López
+ * @author Oleh Kuchma
+ * @version 1.0
+ */
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
@@ -14,6 +23,9 @@ export class InstructionPageComponent implements OnInit {
   }
 
   reditectToMenu() {
+    /*
+    Esta función redirecciona a la página de inicio del juego.
+    */
     this.router.navigateByUrl('home', {replaceUrl: true});
   }
 

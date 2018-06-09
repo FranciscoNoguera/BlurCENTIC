@@ -1,3 +1,9 @@
+/**
+ * Este componente implementa la pantalla de fin del juego
+ * @author Francisco Noguera Fuentes
+ * @author JUan Martinez Romero
+ * @version 1.0
+ */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 

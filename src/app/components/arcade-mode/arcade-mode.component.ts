@@ -1,3 +1,8 @@
+/**
+ * Este coponente implementa el juego.
+ * @author Francisco Noguera Fuentes
+ * @version 1.0
+ */
 import { BASE_URL } from './../../app.constants';
 import { Card } from './../../interfaces/Card';
 import { ApiConnectionService } from './../../services/ApiConnection/api-connection.service';

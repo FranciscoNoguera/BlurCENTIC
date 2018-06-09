@@ -1,3 +1,9 @@
+/**
+ * Este componente implementa la pantalla de inicio del juego
+ * @author Francisco Noguera Fuentes
+ * @author JUan Martinez Romero
+ * @version 1.0
+ */
 import { Card } from './../../interfaces/Card';
 import { ApiConnectionService } from './../../services/ApiConnection/api-connection.service';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +20,7 @@ export class InitPageComponent implements OnInit {
 
   ngOnInit() {
     this.apiConnectionService.getCredentials();
-    
+
     this.apiConnectionService.getInfo().subscribe(info => {
       localStorage.setItem('data', JSON.stringify(info['data']));
       localStorage.setItem('cards', JSON.stringify(info['items']));
@@ -23,11 +29,17 @@ export class InitPageComponent implements OnInit {
   }
 
   reditectToArcade() {
+    /*
+    Esta función redirecciona a la pantalla de juego.
+    */
     localStorage.setItem('gameStarted', 'false');
     this.router.navigateByUrl('game', {replaceUrl: true});
   }
 
   reditectToInstruction() {
+    /*
+    Esta función redirecciona a las instrucciones de juego.
+    */
     this.router.navigateByUrl('instruction');
   }
 
