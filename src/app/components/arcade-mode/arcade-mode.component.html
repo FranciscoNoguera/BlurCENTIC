@@ -9,7 +9,7 @@
 <div class="row spacer">
     <div class="col-lg-4 col-md-3 col-xs-2"></div>
     <div class="col-lg-2 col-md-3 col-xs-4">
-        <h4><b>Letra: {{keyboardAux}}</b></h4>
+        <!--<h4><b>Letra: {{keyboardAux}}</b></h4>-->
     </div>
     <div class="col-lg-2 col-md-3 col-xs-4">
         <button class="jump-arrow" (click)="jumpCard()">
@@ -137,4 +137,11 @@
             <td><button class="keyboard keyboard-letters" (click)="exchangeLetter('keyboard', 13)">{{arrayKeyboard[13]}}</button></td>
         </tr>
     </table>
+    <br>
+    <table>
+        <td>
+            <tr><button type="button" class="keyboard solution">{{keyboardAux}}</button></tr>
+        </td>
+    </table>
+    
 </div>

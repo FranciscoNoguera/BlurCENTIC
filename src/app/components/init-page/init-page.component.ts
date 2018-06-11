@@ -15,17 +15,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./init-page.component.css']
 })
 export class InitPageComponent implements OnInit {
+  public gameMode: string;
 
   constructor(private router: Router, private apiConnectionService: ApiConnectionService) { }
 
   ngOnInit() {
     this.apiConnectionService.getCredentials();
-
+    
     this.apiConnectionService.getInfo().subscribe(info => {
       localStorage.setItem('data', JSON.stringify(info['data']));
       localStorage.setItem('cards', JSON.stringify(info['items']));
       localStorage.setItem('gameMode', info['config']['id']);
     });
+    this.gameMode = localStorage.getItem('gameMode');
   }
 
   reditectToArcade() {

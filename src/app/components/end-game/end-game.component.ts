@@ -13,17 +13,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./end-game.component.css']
 })
 export class EndGameComponent implements OnInit {
-  public obteinedPoints: string;
+  public obteinedPoints: number;
+  private pointsPercentage: string;
   public imgRoute: string;
 
   constructor() { }
 
   ngOnInit() {
-    this.obteinedPoints = localStorage.getItem('gamePoints');
-    if((parseFloat(this.obteinedPoints)) > 50){
+    this.pointsPercentage = localStorage.getItem('gamePoints');
+
+    if((parseFloat(this.pointsPercentage)) > 50){
       this.imgRoute = '../../../assets/PetHappy.gif';
     } else {
       this.imgRoute = '../../../assets/Pet.gif';
     }
+    
+    this.obteinedPoints = (JSON.parse(localStorage.getItem('data'))['points'])/100*parseFloat(this.pointsPercentage);
   }
 }
